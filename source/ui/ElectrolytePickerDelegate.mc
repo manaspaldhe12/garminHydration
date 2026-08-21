@@ -24,9 +24,12 @@ class HydrationElectrolytePickerDelegate extends Ui.BehaviorDelegate {
     }
 
     function onSelect() {
-        EventStore.add(Clock.nowEpoch(), amount, view.electrolytes, reminderId);
+        var electrolytes = view.electrolytes;
+        EventStore.add(Clock.nowEpoch(), amount, electrolytes, reminderId);
         HapticService.confirmVibration();
-        Ui.switchToView(new HydrationMainView(), new HydrationMainDelegate(), Ui.SLIDE_DOWN);
+
+        var savedView = new HydrationSavedView(amount, electrolytes);
+        Ui.switchToView(savedView, new HydrationSavedDelegate(savedView), Ui.SLIDE_UP);
         return true;
     }
 

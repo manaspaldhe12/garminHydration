@@ -83,11 +83,9 @@ class HydrationEventListView extends Ui.View {
                 var event = events[i];
                 var info = Clock.infoFor(event.get("ts"));
                 var y = startY + (row * rowHeight);
-                var prefix = (i == cursor ? "> " : "  ");
-                var text = prefix + Format.hm(info.hour, info.min) + "  " + Format.amountText(event.get("amt")) + "  " + Format.yesNo(event.get("elec"));
+                var text = Format.hm(info.hour, info.min) + "  " + Format.amountText(event.get("amt")) + "  " + Format.yesNo(event.get("elec"));
 
-                dc.drawText(width / 2, y, Gfx.FONT_XTINY, text,
-                    Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+                Format.drawMenuRow(dc, width / 2, y, width - 40, rowHeight - 8, text, i == cursor);
             }
         }
 

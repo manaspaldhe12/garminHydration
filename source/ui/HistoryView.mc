@@ -64,11 +64,9 @@ class HydrationHistoryView extends Ui.View {
 
             var day = days[i];
             var y = startY + (row * rowHeight);
-            var prefix = (i == cursor ? "> " : "  ");
-            var text = prefix + Format.dayLabel(day.get("dayStart")) + "  " + Format.amountText(day.get("total"));
+            var text = Format.dayLabel(day.get("dayStart")) + "  " + Format.amountText(day.get("total"));
 
-            dc.drawText(width / 2, y, Gfx.FONT_XTINY, text,
-                Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+            Format.drawMenuRow(dc, width / 2, y, width - 40, rowHeight - 8, text, i == cursor);
         }
 
         dc.drawText(width / 2, height - 16, Gfx.FONT_XTINY, "SELECT: details  BACK",

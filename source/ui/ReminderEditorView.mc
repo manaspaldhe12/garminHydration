@@ -105,12 +105,10 @@ class HydrationReminderEditorView extends Ui.View {
             return "Enabled     " + Format.onOff(reminder.get("enabled"));
         }
         if (field == FIELD_HOUR) {
-            var hourText = Format.pad2(reminder.get("hour"));
-            return "Hour        " + (adjusting && cursor == FIELD_HOUR ? "[" + hourText + "]" : hourText);
+            return "Hour        " + Format.pad2(reminder.get("hour"));
         }
         if (field == FIELD_MINUTE) {
-            var minuteText = Format.pad2(reminder.get("min"));
-            return "Minute      " + (adjusting && cursor == FIELD_MINUTE ? "[" + minuteText + "]" : minuteText);
+            return "Minute      " + Format.pad2(reminder.get("min"));
         }
         if (field == FIELD_DAYS) {
             return "Days   " + Format.daysLabel(reminder.get("days"));
@@ -131,15 +129,16 @@ class HydrationReminderEditorView extends Ui.View {
         dc.drawText(width / 2, 22, Gfx.FONT_SMALL, isNew ? "New Reminder" : "Edit Reminder",
             Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
 
-        var rowHeight = 26;
+        var rowHeight = 24;
         var startY = 55;
         var count = fieldCount();
 
         for (var field = 0; field < count; field += 1) {
             var y = startY + (field * rowHeight);
-            var prefix = (field == cursor ? "> " : "  ");
-            dc.drawText(width / 2, y, Gfx.FONT_XTINY, prefix + rowLabel(field),
-                Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+            var isCursor = (field == cursor);
+            var isAdjustingThisField = isCursor && adjusting && (field == FIELD_HOUR || field == FIELD_MINUTE);
+            var isConfirmingDelete = isCursor && confirmDelete && field == FIELD_DELETE;
+            Format.drawEditableRow(dc, width / 2, y, width - 40, rowHeight - 4, rowLabel(field), isCursor, isAdjustingThisField || isConfirmingDelete);
         }
 
         var hint = "SELECT  UP/DOWN  BACK";

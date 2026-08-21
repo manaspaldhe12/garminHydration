@@ -87,18 +87,16 @@ class HydrationReminderListView extends Ui.View {
             }
 
             var y = startY + (row * rowHeight);
-            var prefix = (i == cursor ? "> " : "  ");
             var text;
 
             if (i < list.size()) {
                 var reminder = list[i];
-                text = prefix + Format.hm(reminder.get("hour"), reminder.get("min")) + "  " + Format.onOff(reminder.get("enabled"));
+                text = Format.hm(reminder.get("hour"), reminder.get("min")) + "  " + Format.onOff(reminder.get("enabled"));
             } else {
-                text = prefix + "[Add Reminder]";
+                text = "[Add Reminder]";
             }
 
-            dc.drawText(width / 2, y, Gfx.FONT_XTINY, text,
-                Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+            Format.drawMenuRow(dc, width / 2, y, width - 40, rowHeight - 8, text, i == cursor);
         }
 
         dc.drawText(width / 2, height - 16, Gfx.FONT_XTINY, "SELECT: open  BACK",

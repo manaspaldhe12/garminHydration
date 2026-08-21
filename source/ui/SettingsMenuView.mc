@@ -39,14 +39,12 @@ class HydrationSettingsMenuView extends Ui.View {
         dc.drawText(width / 2, 30, Gfx.FONT_SMALL, "Hydration",
             Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
 
-        var rowHeight = 34;
+        var rowHeight = 30;
         var startY = height / 2 - rowHeight;
 
         for (var i = 0; i < ITEMS.size(); i += 1) {
             var y = startY + (i * rowHeight);
-            var label = (i == cursor ? "> " : "  ") + ITEMS[i];
-            dc.drawText(width / 2, y, Gfx.FONT_SMALL, label,
-                Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+            Format.drawMenuRow(dc, width / 2, y, width - 40, rowHeight - 6, ITEMS[i], i == cursor);
         }
 
         dc.drawText(width / 2, height - 20, Gfx.FONT_XTINY, "UP/DOWN  SELECT: open  BACK",
