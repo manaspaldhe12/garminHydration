@@ -16,4 +16,22 @@ module Format {
         return ml.toString() + " ml";
     }
 
+    function onOff(enabled) {
+        return enabled ? "ON" : "OFF";
+    }
+
+    function yesNo(value) {
+        return value ? "Yes" : "No";
+    }
+
+    function daysLabel(mask) {
+        if (mask == Days.ALL) {
+            return "Every day";
+        }
+        if (mask == Days.WEEKDAYS) {
+            return "Weekdays";
+        }
+        return "Custom";
+    }
+
 }

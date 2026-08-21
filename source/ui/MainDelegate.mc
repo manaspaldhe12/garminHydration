@@ -19,7 +19,8 @@ class HydrationMainDelegate extends Ui.BehaviorDelegate {
     }
 
     function onPreviousPage() {
-        Ui.pushView(new HydrationAboutView(), new HydrationAboutDelegate(), Ui.SLIDE_UP);
+        var settingsView = new HydrationSettingsMenuView();
+        Ui.pushView(settingsView, new HydrationSettingsMenuDelegate(settingsView), Ui.SLIDE_UP);
         return true;
     }
 

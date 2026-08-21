@@ -58,7 +58,7 @@ class HydrationMainView extends Ui.View {
         dc.drawText(width / 2, height / 2 + 40, Gfx.FONT_XTINY, "today",
             Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
 
-        dc.drawText(width / 2, height - 20, Gfx.FONT_XTINY, "SELECT: Log  DOWN: Today  UP: Info",
+        dc.drawText(width / 2, height - 20, Gfx.FONT_XTINY, "SELECT: Log  DOWN: Today  UP: Settings",
             Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
     }
 
