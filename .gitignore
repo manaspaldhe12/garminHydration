@@ -1,0 +1,10 @@
+# Connect IQ build output
+bin/
+gen/
+*.prg
+*.iq
+*.prg.debug.xml
+
+# Editor / OS
+.vscode/
+.DS_Store

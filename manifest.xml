@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <iq:application
+        entry="HydrationApp"
+        id="2a8f9f7a-95a6-476b-92e4-b146c2596fdb"
+        launcherIcon="@Drawables.LauncherIcon"
+        minApiLevel="3.1.0"
+        name="@Strings.AppName"
+        type="watch-app"
+        version="0.0.0">
+        <iq:products>
+            <iq:product id="fr935"/>
+        </iq:products>
+        <iq:permissions>
+            <iq:uses-permission id="Background"/>
+        </iq:permissions>
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+        <iq:background minApiLevel="3.1.0"/>
+    </iq:application>
+</iq:manifest>
