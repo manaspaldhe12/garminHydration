@@ -28,7 +28,7 @@ class HydrationMainView extends Ui.View {
     }
 
     function checkPending() {
-        var pending = PendingReminderStore.get();
+        var pending = PendingReminderStore.getIfFresh();
         if (pending != null) {
             if (pollTimer != null) {
                 pollTimer.stop();
@@ -46,7 +46,7 @@ class HydrationMainView extends Ui.View {
         var height = dc.getHeight();
 
         var dayStart = Clock.startOfDayEpoch(Clock.nowEpoch());
-        var dayEnd = dayStart + 86400;
+        var dayEnd = Clock.dayStartOffset(dayStart, 1);
         var total = HydrationEvents.totalAmount(EventStore.eventsBetween(dayStart, dayEnd));
 
         dc.drawText(width / 2, height / 2 - 40, Gfx.FONT_MEDIUM, "Hydration",

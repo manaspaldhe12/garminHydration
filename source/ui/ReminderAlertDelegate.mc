@@ -10,11 +10,15 @@ class HydrationReminderAlertDelegate extends Ui.BehaviorDelegate {
     }
 
     // Dismiss -> go straight into the log-water flow, pre-filled with
-    // this reminder's id so the resulting event references it. Main
-    // is installed as the root first so backing out of the amount
-    // picker returns to the home screen instead of exiting the app.
+    // this reminder's id so the resulting event references it (when
+    // exactly one reminder fired; if several coincided at the same
+    // moment there's no single reminder to attribute the log to).
+    // Main is installed as the root first so backing out of the
+    // amount picker returns to the home screen instead of exiting the
+    // app.
     function onSelect() {
-        var reminderId = pending.get("rid");
+        var ids = pending.get("rids");
+        var reminderId = (ids != null && ids.size() == 1) ? ids[0] : null;
         PendingReminderStore.clear();
 
         Ui.switchToView(new HydrationMainView(), new HydrationMainDelegate(), Ui.SLIDE_IMMEDIATE);

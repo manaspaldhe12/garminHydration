@@ -10,8 +10,8 @@ module HistoryAggregator {
         var result = [];
 
         for (var d = 0; d < numDays; d += 1) {
-            var dayStart = todayStart - (d * 86400);
-            var dayEnd = dayStart + 86400;
+            var dayStart = Clock.dayStartOffset(todayStart, -d);
+            var dayEnd = Clock.dayStartOffset(dayStart, 1);
             var dayEvents = [];
 
             for (var i = 0; i < events.size(); i += 1) {
@@ -34,7 +34,7 @@ module HistoryAggregator {
     }
 
     function eventsForDay(dayStartEpoch) {
-        return EventStore.eventsBetween(dayStartEpoch, dayStartEpoch + 86400);
+        return EventStore.eventsBetween(dayStartEpoch, Clock.dayStartOffset(dayStartEpoch, 1));
     }
 
 }

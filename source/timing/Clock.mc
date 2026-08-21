@@ -14,16 +14,25 @@ module Clock {
     }
 
     function startOfDayEpoch(epoch) {
+        return dayStartOffset(epoch, 0);
+    }
+
+    // Local midnight of (the calendar day containing epoch) + days.
+    // Built from calendar fields (via Gregorian.moment's normalization
+    // of out-of-range day values) rather than epoch + days*86400, so
+    // it stays correct across month/year rollovers and DST transitions
+    // (where a local day isn't exactly 86400 seconds).
+    function dayStartOffset(epoch, days) {
         var info = infoFor(epoch);
-        var midnight = Gregorian.moment({
+        var moment = Gregorian.moment({
             :year => info.year,
             :month => info.month,
-            :day => info.day,
+            :day => info.day + days,
             :hour => 0,
             :minute => 0,
             :second => 0
         });
-        return midnight.value();
+        return moment.value();
     }
 
 }

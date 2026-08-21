@@ -11,9 +11,9 @@ class HydrationServiceDelegate extends Background.ServiceDelegate {
     }
 
     function onTemporalEvent() {
-        var reminderId = ReminderScheduler.scheduledReminderId();
-        if (reminderId != null) {
-            PendingReminderStore.setPending(reminderId, Clock.nowEpoch());
+        var reminderIds = ReminderScheduler.scheduledReminderIds();
+        if (reminderIds.size() > 0) {
+            PendingReminderStore.setPending(reminderIds, Clock.nowEpoch());
             HapticService.reminderVibration();
         }
 

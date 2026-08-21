@@ -24,4 +24,33 @@ module ReminderFactory {
         ];
     }
 
+    // Guards against corrupted/partial storage (e.g. from an
+    // interrupted write or a future format change) producing a
+    // reminder with a missing or out-of-range field.
+    function isValid(reminder) {
+        if (reminder == null) {
+            return false;
+        }
+
+        var id = reminder.get("id");
+        var hour = reminder.get("hour");
+        var minute = reminder.get("min");
+        var enabled = reminder.get("enabled");
+        var days = reminder.get("days");
+
+        if (id == null || hour == null || minute == null || enabled == null || days == null) {
+            return false;
+        }
+        if (hour < 0 || hour > 23) {
+            return false;
+        }
+        if (minute < 0 || minute > 59) {
+            return false;
+        }
+        if (days <= 0 || days > Days.ALL) {
+            return false;
+        }
+        return true;
+    }
+
 }

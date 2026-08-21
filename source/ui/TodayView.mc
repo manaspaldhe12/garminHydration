@@ -15,7 +15,7 @@ class HydrationTodayView extends Ui.View {
         var height = dc.getHeight();
 
         var dayStart = Clock.startOfDayEpoch(Clock.nowEpoch());
-        var dayEnd = dayStart + 86400;
+        var dayEnd = Clock.dayStartOffset(dayStart, 1);
         var events = EventStore.eventsBetween(dayStart, dayEnd);
 
         var total = HydrationEvents.totalAmount(events);

@@ -23,7 +23,7 @@ class HydrationApp extends App.AppBase {
     }
 
     function getInitialView() {
-        var pending = PendingReminderStore.get();
+        var pending = PendingReminderStore.getIfFresh();
         if (pending != null) {
             return [ new HydrationReminderAlertView(pending), new HydrationReminderAlertDelegate(pending) ];
         }
