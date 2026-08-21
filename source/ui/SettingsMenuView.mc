@@ -3,7 +3,7 @@ using Toybox.Graphics as Gfx;
 
 class HydrationSettingsMenuView extends Ui.View {
 
-    const ITEMS = [ "Reminders", "Default Amount", "Default Electrolytes" ];
+    const ITEMS = [ "Reminders", "Default Amount", "Default Electrolytes", "History" ];
 
     var cursor;
 

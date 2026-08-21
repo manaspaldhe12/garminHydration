@@ -1,13 +1,26 @@
 using Toybox.WatchUi as Ui;
 
-class HydrationTodayDelegate extends Ui.BehaviorDelegate {
+class HydrationHistoryDelegate extends Ui.BehaviorDelegate {
 
-    function initialize() {
+    var view;
+
+    function initialize(v) {
         BehaviorDelegate.initialize();
+        view = v;
+    }
+
+    function onNextPage() {
+        view.moveNext();
+        return true;
+    }
+
+    function onPreviousPage() {
+        view.movePrev();
+        return true;
     }
 
     function onSelect() {
-        var dayStart = Clock.startOfDayEpoch(Clock.nowEpoch());
+        var dayStart = view.selectedDay().get("dayStart");
         var eventListView = new HydrationEventListView(dayStart);
         Ui.pushView(eventListView, new HydrationEventListDelegate(eventListView), Ui.SLIDE_LEFT);
         return true;

@@ -34,7 +34,7 @@ class HydrationTodayView extends Ui.View {
         dc.drawText(width / 2, height / 2 + 45, Gfx.FONT_XTINY, "No electrolytes: " + Format.amountText(withoutElectrolytes),
             Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
 
-        dc.drawText(width / 2, height - 20, Gfx.FONT_XTINY, "BACK: return",
+        dc.drawText(width / 2, height - 20, Gfx.FONT_XTINY, "SELECT: events  BACK",
             Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
     }
 

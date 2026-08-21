@@ -27,9 +27,12 @@ class HydrationSettingsMenuDelegate extends Ui.BehaviorDelegate {
         } else if (index == 1) {
             var amountView = new HydrationDefaultAmountView();
             Ui.pushView(amountView, new HydrationDefaultAmountDelegate(amountView), Ui.SLIDE_LEFT);
-        } else {
+        } else if (index == 2) {
             var elecView = new HydrationDefaultElectrolytesView();
             Ui.pushView(elecView, new HydrationDefaultElectrolytesDelegate(elecView), Ui.SLIDE_LEFT);
+        } else {
+            var historyView = new HydrationHistoryView();
+            Ui.pushView(historyView, new HydrationHistoryDelegate(historyView), Ui.SLIDE_LEFT);
         }
         return true;
     }
